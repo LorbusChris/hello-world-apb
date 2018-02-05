@@ -1,0 +1,2 @@
+- name: Say Hello from Container
+  shell: echo "Hello World"

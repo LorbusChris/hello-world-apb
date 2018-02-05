@@ -44,3 +44,13 @@
     state: '{{ state }}'
     definition: "{{ lookup('template', 'route.yml') | from_yaml }}"
 
+
+# Get pod list for debugging
+- name: Retrieve pod list for namespace
+  k8s_v1_pod_list:
+    namespace: '{{ namespace }}'
+  register: pod_list
+
+- name: Print pod list
+  debug:
+    msg: "Pod List: {{ pod_list.stdout }}"

@@ -8,3 +8,13 @@
   - role: hello-world-apb
   vars:
     apb_action: provision
+
+# Configure each container with its role
+- name: hello-world-apb playbook to configure the hello-world container
+  hosts: hello-world-*
+  gather_facts: false
+  connection: kubectl
+    kubectl_container: hello-world
+    kubectl_namespace: '{{ namespace }}'
+  roles:
+  - role: config-hello-world-container
